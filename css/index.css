@@ -1,0 +1,143 @@
+/* 首页样式 */
+*,
+*:after,
+*:before {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -ms-box-sizing: border-box;
+  -o-box-sizing: border-box;
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  -ms-appearance: none;
+  -o-appearance: none;
+}
+a {
+  text-decoration: none;
+  color: #333;
+  -webkit-tap-highlight-color: transparent;
+}
+a:visited {
+  color: #333;
+}
+a:hover {
+  color: #333;
+}
+ul,
+ol {
+  list-style: none;
+}
+body {
+  background-color: #f6f6f6;
+  color: #666;
+  font-size: 14px;
+  font-family: -apple-system, Helvetica, sans-serif;
+}
+em,
+i {
+  font-style: normal;
+}
+b,
+strong {
+  font-weight: normal;
+}
+table {
+  border-collapse: collapse;
+}
+input,
+textarea {
+  outline: none;
+  resize: none;
+}
+img {
+  border: 0;
+}
+.clearfix {
+  zoom: 1;
+}
+.clearfix:after {
+  display: block;
+  content: "";
+  clear: both;
+  visibility: hidden;
+  height: 0;
+  line-height: 0;
+}
+.fl {
+  float: left;
+}
+.fr {
+  float: right;
+}
+header {
+  position: fixed;
+  width: 100%;
+}
+header div.wrapper {
+  background-color: #e23437;
+  overflow: hidden;
+  height: 44px;
+  position: relative;
+  padding: 0 50px;
+}
+header div.wrapper a {
+  position: absolute;
+  top: 0;
+  width: 50px;
+  height: 44px;
+}
+header div.wrapper a.menu {
+  left: 0;
+  background: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACgAAAAgAgMAAAAdw9KTAAAABGdBTUEAALGPC/xhBQAAAAFzUkdCAK7OHOkAAAAMUExURUdwTP///////////waf0AoAAAADdFJOUwDjSYAlncUAAAAbSURBVBjTY5j/Hwq+MdTDmH+RmUgK6AuGhcsAU5tyB6Ji+x0AAAAASUVORK5CYII=') center center no-repeat;
+  background-size: 20px 18px;
+}
+header div.wrapper a.login {
+  right: 0;
+  color: #fff;
+  text-align: center;
+  line-height: 44px;
+}
+header div.wrapper div {
+  width: 100%;
+  height: 30px;
+  margin-top: 7px;
+  border-radius: 22px;
+  background-color: #fff;
+  position: relative;
+  padding-left: 78px;
+  overflow: hidden;
+}
+header div.wrapper div i {
+  position: absolute;
+  width: 20px;
+  height: 16px;
+  top: 9px;
+}
+header div.wrapper div i.jd_logo {
+  left: 15px;
+  background: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACgAAAAeCAMAAABpA6zvAAAABGdBTUEAALGPC/xhBQAAAAFzUkdCAK7OHOkAAAAzUExURUdwTOo8Puo7Peo7Pek7Peo7Pe0/Qek7PvE+SP9SUuo7Peo7Peo7Pus8P+o7Peo7Pek7PZSxd20AAAAQdFJOUwBV8eG+hyGkEQbGmWs/rthNA0r+AAAA5klEQVQ4y63T0RaDIAgAUEDRUjP//2u3CI/T1vJhvM3uVBAANGx5xwLgiwSZ3TI6uMYANSyuc7AUs03CUvgHRMTEflcZ76FezDGJTE/wTYNI9whhDePhNxAcDVveQWDJbgK6Y8FPQDBH2WdgPlZmYNQvj5D7tP8Ap4+2s8lQX56g4AK34bGPshJ8gbl/wrXoASOUDanlgvVFB3g2T5sGZ2on9xCp23BJ8tusPVzw7O/zhuxtHSIZDYGRo891WUemjeVZgsu4kmY8ju8Ifb2f/i3WV+/gzq0Zgs0xba0eHCSsj4zLR91f1fAfiWsqzlEAAAAASUVORK5CYII=') no-repeat;
+  background-size: 100% 100%;
+}
+header div.wrapper div i.jd_logo:after {
+  position: absolute;
+  right: -6px;
+  display: block;
+  content: "";
+  width: 1px;
+  background-color: #dddddd;
+  height: 16px;
+}
+header div.wrapper div i.search {
+  left: 52px;
+  background: url('../img/jd-sprites.png') no-repeat;
+  background-size: 200px 200px;
+  background-position: -83px 0;
+}
+header div.wrapper div input {
+  border: none;
+  width: 100%;
+  height: 30px;
+}
