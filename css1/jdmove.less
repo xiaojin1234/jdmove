@@ -116,17 +116,17 @@ body{
         
     }
     ul.l_u1{
-        width: 100%;
+        width: 1000%;
         height: 7.4rem;
         position: absolute;
    
         margin-top: 2.4375rem;
         
         li{
-            width:100%;
+            width:10%;
             
             height: 7.4rem;
-            position: absolute;
+            float: left;
             // transition: all 1s;
             img{
                 width:calc(100% - 1.375rem);
@@ -135,12 +135,7 @@ body{
 
                 border-radius: .3125rem;
             }
-            &:nth-child(1){
-                left: 0%;
-            }
-            &:nth-child(2){
-                left: 100%;
-            }
+            
         }
     }
     ul.l_u2{
@@ -157,6 +152,9 @@ body{
             height: .3125rem;
             border-radius: 50%;
            background: white;
+           &.active{
+               background-color: #f2270c;
+           }
         }
     }
 }

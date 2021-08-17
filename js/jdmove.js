@@ -1,96 +1,87 @@
 //轮播图
 (function() {
-
-    var arr = [
-        './img/lunbo3.jpg.dpg.jpg',
-        './img/lunbo4.jpg',
-        './img/lunbo5.jpg.dpg.jpg',
-        './img/lunbo6.jpg',
-        './img/lunbo7.jpg.dpg.jpg',
-        './img/lunbo8.jpg.dpg.jpg',
-        './img/lunbo1.jpg',
-        './img/lunbo2.jpg.dpg.png'
-    ]
     var timer = null;
-    var index = -1;
-    var sum = 0;
-    $(".l_u2>li").eq(0).css("backgroundColor", "red").siblings().css("backgroundColor", "white");
-    lunbo();
+    var num = 1;
+    $(".l_u1").prepend($(".l_u1>li:last").clone());
+    $(".l_u1").append($(".l_u1>li:eq(1)").clone());
+    var iw = $(".l_u1>li:eq(1)")[0].clientWidth;
+    moveFn($(".l_u1"), -iw);
+    op();
 
-    function lunbo() {
-        timer = setInterval(open, 1000);
+    function op() {
+        timer = setInterval(dsFn, 1000)
     }
 
-    function open() {
-        index++;
-        var oLi = document.querySelectorAll(".l_u1>li");
-        let aLeft = parseInt(window.getComputedStyle($(".l_u1>li:eq(0)")[0]).left);
-        let bWidth = parseInt(window.getComputedStyle($(".l_u1")[0]).width);
-        $(".l_u1>li").css("transition", "all 0.5s")
-        $(".l_u1>li:eq(0)").css("left", "-100%");
-        $(".l_u1>li:eq(1)").css("left", "0%");
-        oLi[0].addEventListener("transitionend", function() {
-            $(".l_u1>li").eq(0).remove();
-            if (index >= 0) {
-                creatE();
-            }
-            sum++;
-            $(".l_u2>li").eq(sum).css("backgroundColor", "red").siblings().css("backgroundColor", "white");
-            sum = sum == 7 ? -1 : sum;
-        })
-        index = index == 8 ? 0 : index;
-    }
-
-    function creatE() {
-        $(".l_u1").append($("<li><a href ='#' ><img src =' " + arr[index] + "'alt = ''></a></li>"));
-    }
-
-    function creatEs() {
-        var asd = index - 2;
-        asd == -1 ? 7 : asd;
-        asd == -2 ? 6 : asd;
-
-        $(".l_u1>li:eq(0)").before($("<li><a href ='#' ><img src =' " + arr[asd] + "'alt = ''></a></li>"));
-        $(".l_u1>li:eq(0)").css("left", "-100%");
-    }
-
-    function cle() {
+    function cleFn() {
         clearInterval(timer);
         timer = null;
     }
-    var qiX = 0;
-    var moX = 0;
 
-    var ulW = parseInt(window.getComputedStyle($(".l_u1")[0]).width);
-    $(".l_u1")[0].addEventListener("touchstart", function(e) {
-        cle();
-        creatEs();
-        $(".l_u1>li:eq(2)").css("left", "100%");
-        qiX = e.changedTouches[0].screenX;
-
+    function dsFn() {
+        num++;
+        moveFn($(".l_u1"), num * -iw);
+        transFn($(".l_u1"), "all 0.4s");
+    }
+    $(".l_u1")[0].addEventListener("transitionend", function() {
+        if (num >= $(".l_u1>li").length - 1) {
+            num = 1;
+            moveFn($(".l_u1"), num * -iw);
+            transFn($(".l_u1"), "none");
+        }
+        if (num <= 0) {
+            num = $(".l_u1>li").length - 2;
+            moveFn($(".l_u1"), num * -iw);
+            transFn($(".l_u1"), "none");
+        }
+        $(".active").removeClass("active");
+        $(".l_u2>li").eq(num - 1).addClass("active");
     })
 
+    function moveFn(obj, a) {
+        obj.css("webkitTransform", "translateX(" + a + "px)");
+        obj.css("oTransform", "translateX(" + a + "px)");
+        obj.css("msTransform", "translateX(" + a + "px)");
+        obj.css("mozTransform", "translateX(" + a + "px)");
+        obj.css("Transform", "translateX(" + a + "px)");
+    }
+
+    function transFn(obj, a) {
+        obj.css("webkitTransition", a);
+        obj.css("oTransition", a);
+        obj.css("msTransition", a);
+        obj.css("mozTransition", a);
+        obj.css("oTransition", a);
+    }
+
+    var startX = 0;
+    var cha = 0;
+    $(".l_u1")[0].addEventListener("touchstart", function(e) {
+        cleFn();
+        startX = e.touches[0].clientX;
+    })
     $(".l_u1")[0].addEventListener("touchmove", function(e) {
-
-        moX = e.changedTouches[0].screenX;
-        $(".l_u1>li").css("transition", "none");
-        $(".l_u1>li:eq(1)").css("left", (moX - qiX) + "px");
-
-        if ((qiX - moX) > 0) {
-            $(".l_u1>li:eq(2)").css("left", ulW - (qiX - moX) + "px");
-
-        }
-        if ((qiX - moX) < 0) {
-            $(".l_u1>li:eq(0)").css("left", -ulW + (moX - qiX) + "px");
-        }
-
-
+        cha = e.touches[0].clientX - startX;
 
     })
     $(".l_u1")[0].addEventListener("touchend", function(e) {
-        $(".l_u1>li").eq(0).remove();
-        lunbo();
+
+        if (cha < 0 && Math.abs(cha) > iw / 3) {
+            num++;
+        }
+        if (cha > 0 && Math.abs(cha) > iw / 3) {
+            num--;
+        }
+        num = num < 0 ? 0 : num;
+        num = num > $(".l_u1>li").length - 2 ? $(".l_u1>li").length - 2 : num;
+        console.log(num);
+        moveFn($(".l_u1"), num * -iw);
+        transFn($(".l_u1"), "all 0.4s");
+        $(".active").removeClass("active");
+        $(".l_u2>li").eq(num - 1).addClass("active");
+        op();
     })
+
+
 })();
 
 //秒杀倒计时
